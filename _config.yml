@@ -7,7 +7,7 @@ baseurl:     ""
 url:         "http://nealsun.github.io"
 
 #Duoshuo short Name / 多说的shortname
-duoshuo: "neal"
+duoshuo: "zhome"
 
 #Baidu analytics / 百度统计(异步的js码，注意使用异步版本的)
 #baidu_analyze:
@@ -18,7 +18,7 @@ google_analytics: "UA-48454026-2"
 # Optional features
 animated:           true
 show_related_posts: false
-show_post_footers:  true
+show_post_footers:  false
 
 # Social icons
 show_social_icons: true
@@ -33,6 +33,6 @@ flattr_button:
 # Build settings
 markdown:     kramdown
 permalink:    pretty
-paginate:     3
+paginate:     5
 sass:
   compressed: true
