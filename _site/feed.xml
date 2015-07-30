@@ -40,7 +40,7 @@
 
 &lt;p&gt;学习语言，必须从hello， world！开始，&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;swift
+&lt;p&gt;&lt;code&gt;c
 print(&quot;Hello, world!&quot;)
 &lt;/code&gt;&lt;/p&gt;
 
