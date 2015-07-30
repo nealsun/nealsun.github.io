@@ -1,0 +1,38 @@
+# Site settings
+title:       东篱下
+email:       sunweirong32@163.com
+author:      大Z
+description: "It's all about life."
+baseurl:     ""
+url:         "http://nealsun.github.io"
+
+#Duoshuo short Name / 多说的shortname
+duoshuo: "neal"
+
+#Baidu analytics / 百度统计(异步的js码，注意使用异步版本的)
+#baidu_analyze:
+
+# Google analytics
+google_analytics: "UA-48454026-2"
+
+# Optional features
+animated:           true
+show_related_posts: false
+show_post_footers:  true
+
+# Social icons
+show_social_icons: true
+github_username: nealsun
+twitter_username:
+google_plus_id:
+linkedin_username:
+bitcoin_url:
+paypal_url:
+flattr_button:
+
+# Build settings
+markdown:     kramdown
+permalink:    pretty
+paginate:     3
+sass:
+  compressed: true
