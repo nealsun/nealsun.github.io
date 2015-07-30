@@ -7,6 +7,52 @@
     <atom:link href="http://nealsun.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Swift 2</title>
+        <description>&lt;h1 id=&quot;swift-2&quot;&gt;swift 2&lt;/h1&gt;
+
+&lt;h3 id=&quot;modern-programming-language&quot;&gt;Modern Programming Language&lt;/h3&gt;
+
+&lt;p&gt;​     何为modern，即modern language有哪些特点？苹果文档是这样描述的：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Swift is the result of the latest research on programming languages, combined with decades of experience building Apple platforms. Named parameters brought forward from Objective-C are expressed in a clean syntax that makes APIs in Swift even easier to read and maintain. Inferred types make code cleaner and less prone to mistakes, while modules eliminate headers and provide namespaces. Memory is managed automatically, and you don’t even need to type semi-colons. All this modern thinking results in a language that is easy and fun to use.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;集合了编程语言最新的研究成果和多年来开发苹果平台的经验。引入了命名参数，类型推断，模块化，arc等特性；&lt;/p&gt;
+
+&lt;p&gt;​    以下是其他一些重要特性：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;闭包&lt;/li&gt;
+  &lt;li&gt;元组&lt;/li&gt;
+  &lt;li&gt;泛型&lt;/li&gt;
+  &lt;li&gt;快速简洁的迭代&lt;/li&gt;
+  &lt;li&gt;支持&lt;strong&gt;方法&lt;/strong&gt;、&lt;strong&gt;扩展&lt;/strong&gt;、&lt;strong&gt;协议&lt;/strong&gt;的struct&lt;/li&gt;
+  &lt;li&gt;函数式编程&lt;/li&gt;
+  &lt;li&gt;原生的错误处理机制&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Apple在iOS 9发布后，同时增加了Objective-c一些新语法（如数组支持类型声明），应该是为了整体像swift迁移做准备吧。&lt;/p&gt;
+
+&lt;h3 id=&quot;playground&quot;&gt;Playground&lt;/h3&gt;
+
+&lt;p&gt;​    Playground是随swift一同引入的一种交互式编程模式，它可以让你写代码的时候实时查看运行结果，同时playground的注释支持markdown语法，这使得playground能够方便的作为展示代码的工具，本文所有的例子也都会在playground上运行。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;概述&lt;/h3&gt;
+
+&lt;p&gt;学习语言，必须从hello， world！开始，&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;swift
+print(&quot;Hello, world!&quot;)
+&lt;/code&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 30 Jul 2015 00:00:00 +0800</pubDate>
+        <link>http://nealsun.github.io/2015/07/30/SWIFT-2/</link>
+        <guid isPermaLink="true">http://nealsun.github.io/2015/07/30/SWIFT-2/</guid>
+      </item>
+    
+      <item>
         <title>Hello, Pixyll</title>
         <description>&lt;p&gt;Hello.&lt;/p&gt;
 
