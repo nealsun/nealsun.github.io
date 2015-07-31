@@ -1034,7 +1034,7 @@ green     #859900  operators, other keywords
 */
 .highlight,
 .gist-syntax .highlight {
-  background-color: #fdf6e3;
+  background-color: #f7f7f7;
   color: #586e75; }
 
 .highlight .c,
