@@ -2,7 +2,7 @@
 title:       东篱下
 email:       sunweirong32@163.com
 author:      大Z
-description: "It's all about life."
+description: "It's all about my life."
 baseurl:     ""
 url:         "http://nealsun.github.io"
 
@@ -17,7 +17,7 @@ google_analytics: "UA-48454026-2"
 
 # Optional features
 animated:           true
-show_related_posts: true
+show_related_posts: false
 show_post_footers:  true
 
 # Social icons
@@ -31,8 +31,12 @@ paypal_url:
 flattr_button:
 
 # Build settings
-markdown:     kramdown
+markdown:     redcarpet #kramdown
 permalink:    pretty
 paginate:     5
 sass:
   compressed: true
+
+redcarpet:
+  extensions: ["fenced_code_blocks", "tables", "highlight", "with_toc_data", "strikethrough", "underline"]
+  render_options:
