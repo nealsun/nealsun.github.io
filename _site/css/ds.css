@@ -1,0 +1,153 @@
+.site-wrap #ds-thread #ds-reset {
+    color: #555;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-replybox {
+    margin-bottom: 30px;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-replybox .ds-avatar,
+.site-wrap #ds-reset .ds-avatar img {
+    box-shadow: none;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-textarea-wrapper {
+    border-color: #c7d4e1;
+    background: none;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-textarea-wrapper textarea {
+    height: 60px;
+}
+
+.site-wrap #ds-reset .ds-rounded-top {
+    border-radius: 0;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-post-toolbar {
+    box-sizing: border-box;
+    border: 1px solid #c7d4e1;
+    background: #f6f8fa;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-post-options {
+    height: 40px;
+    border: none;
+    background: none;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-toolbar-buttons {
+    top: 11px;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-sync {
+    top: 5px;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-post-button {
+    top: 4px;
+    right: 5px;
+    width: 90px;
+    height: 30px;
+    border: 1px solid #c5ced7;
+    border-radius: 3px;
+    background-image: linear-gradient(#fbfbfc, #f5f7f9);
+    color: #60676d;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-post-button:hover {
+    background-position: 0 -30px;
+    color: #60676d;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-comments-info {
+    padding: 10px 0;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-sort {
+    display: none;
+}
+
+.site-wrap #ds-thread #ds-reset li.ds-tab a.ds-current {
+    border: none;
+    background: #f6f8fa;
+    color: #60676d;
+}
+
+.site-wrap #ds-thread #ds-reset li.ds-tab a.ds-current:hover {
+    background-color: #e9f0f7;
+    color: #60676d;
+}
+
+.site-wrap #ds-thread #ds-reset li.ds-tab a {
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-login-buttons p {
+    color: #999;
+    line-height: 36px;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-login-buttons .ds-service-list li {
+    height: 28px;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list a {
+    background: none;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list a:hover {
+    color: #fff;
+    background: #666;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list .ds-weibo {
+    color: #fc9b00;
+    border-color: #fc9b00;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list .ds-weibo:hover {
+    background: #fc9b00;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list .ds-qq {
+    color: #60a3ec;
+    border-color: #60a3ec;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list .ds-qq:hover {
+    background: #60a3ec;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list .ds-renren {
+    color: #2e7ac4;
+    border-color: #2e7ac4;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list .ds-renren:hover {
+    background: #2e7ac4;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list .ds-douban {
+    color: #37994c;
+    border-color: #37994c;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list .ds-douban:hover {
+    background: #37994c;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list .ds-more-services {
+    border: none;
+}
+
+.site-wrap #ds-thread #ds-reset .ds-service-list .ds-more-services:hover {
+    background: none;
+}
