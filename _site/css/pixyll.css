@@ -251,7 +251,8 @@ strong, .bold {
 
 .py2 {
   padding-top: 2rem;
-  padding-bottom: 2rem; }
+  padding-bottom: 2rem;
+  text-align: center; }
 
 .p3 {
   padding: 3rem; }
@@ -734,6 +735,9 @@ body {
 
 .wrap .measure {
   margin: 0 auto; }
+
+.post-meta-detail {
+  text-align: right; }
 
 .meta,
 .post-meta {
