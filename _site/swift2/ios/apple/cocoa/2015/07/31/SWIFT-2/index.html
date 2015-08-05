@@ -130,11 +130,11 @@
 
 <h5 id="变量声明">变量声明</h5>
 
-<p>swift分别使用关键字<code>let</code>和<code>var</code>来声明常量和变量，变量类型的声明跟在名称后面用<code>：</code>分隔。 不过swift引入了类型推断，当编译器可以推断出变量的类型时，不需要显示的声明变量类型。</p>
+<p>swift分别使用关键字<code>let</code>和<code>var</code>来声明常量和变量，变量类型的声明跟在名称后面用<code>：</code>分隔。 不过swift引入了类型推断，当编译器可以推断出变量的类型时，不需要显式的声明变量类型。</p>
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="n">aConst</span> <span class="o">=</span> <span class="mf">70.0</span> <span class="c1">//double，编译器根据字面量70.0推断类型是double</span>
 <span class="k">var</span> <span class="n">aVar</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1">//int，编译器根据字面量30推断类型是int</span>
-<span class="k">let</span> <span class="nl">aDoubleConst</span><span class="p">:</span> <span class="n">Double</span> <span class="o">=</span> <span class="mi">70</span> <span class="c1">//double， 需要显示声明，因为赋了int的字面量，编译器会推断为整型</span>
-<span class="k">var</span> <span class="nl">aStringVar</span><span class="p">:</span> <span class="n">String</span> <span class="c1">//string，需要显示声明，因为只声明了变量名，编译器缺少推断信息</span>
+<span class="k">let</span> <span class="nl">aDoubleConst</span><span class="p">:</span> <span class="n">Double</span> <span class="o">=</span> <span class="mi">70</span> <span class="c1">//double， 需要显式声明，因为赋了int的字面量，编译器会推断为整型</span>
+<span class="k">var</span> <span class="nl">aStringVar</span><span class="p">:</span> <span class="n">String</span> <span class="c1">//string，需要显式声明，因为只声明了变量名，编译器缺少推断信息</span>
 </code></pre></div>
 <p>更好玩的是swift支持使用unicode来声明变量，我们可以拿个emoji表情来声明更形象的变量名。</p>
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="err">🐷</span> <span class="o">=</span> <span class="s">&quot;pig&quot;</span>
@@ -146,7 +146,7 @@
 <span class="k">let</span> <span class="n">weight</span> <span class="o">=</span> <span class="mf">77.0</span>
 <span class="k">let</span> <span class="n">tall</span> <span class="o">=</span> <span class="s">&quot;\(name)的身高是\(height)m,体重是\(weight)kg，那么他的BMI是\(weight/(height*height))&quot;</span>
 </code></pre></div>
-<p>声明数组和辞典可以用字面量或者初始化方法</p>
+<p>声明数组和词典可以用字面量或者初始化方法</p>
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">var</span> <span class="n">aArray</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;apple&quot;</span><span class="p">,</span> <span class="s">&quot;banana&quot;</span><span class="p">,</span> <span class="s">&quot;orange&quot;</span><span class="p">]</span>
 <span class="n">aArray</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;peach&quot;</span>
 
@@ -159,7 +159,7 @@
 <span class="k">let</span> <span class="n">emptyArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">String</span><span class="p">]()</span>
 <span class="k">let</span> <span class="n">emptyDictionary</span> <span class="o">=</span> <span class="p">[</span><span class="nl">String</span><span class="p">:</span> <span class="n">Float</span><span class="p">]()</span>
 </code></pre></div>
-<p>swift的<code>Array</code>和<code>Dictionary</code>是有类型的，如果一个<code>Array</code>声明为一个<code>String</code>类型的<code>Array</code>，那么就不能给他增加其他类型的变量，而objc的<code>NSArray</code>可以添加任何对象，swift为了兼容这一点引入了几个特殊类型，<code>AnyObject</code>和<code>Any</code>，使得<code>[AnyObject]</code>能添加任何对象。这样真的大丈夫？为了兼容损失了一丢丢的优雅？</p>
+<p>swift的<code>Array</code>和<code>Dictionary</code>是有类型的，如果一个<code>Array</code>声明为一个<code>String</code>类型，那么就不能给他增加其他类型的变量，而objc的<code>NSArray</code>可以添加任何对象，swift为了兼容这一点引入了几个特殊类型，<code>AnyObject</code>和<code>Any</code>，使得<code>[AnyObject]</code>能添加任何对象。这样真的大丈夫？为了兼容损失了一丢丢的优雅？</p>
 
 <p>另外swift的<code>Array</code>和<code>Dictionary</code>是没有mutable和immutable类型区分的，是否可变取决于声明时是<code>let</code>还是<code>var</code>。</p>
 
@@ -169,7 +169,7 @@
 </code></pre></div>
 <h5 id="optional">Optional</h5>
 
-<p>前面声明的变量都是不能设置为<code>nil</code>的，如果需要设置<code>nil</code>,需要在声明的时候在类型后面增加<code>?</code>标识符，他表示这个变量可能有值可能是<code>nil</code>。 Optinal在swift中是个重要的概念，后面专门写一篇来介绍。</p>
+<p>前面声明的变量都是不能设置为<code>nil</code>的，如果需要设置<code>nil</code>，需要在声明的时候在类型后面增加<code>?</code>标识符，他表示这个变量可能有值可能是<code>nil</code>。 Optinal在swift中是个重要的概念，后面专门写一篇来介绍。</p>
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">var</span> <span class="nl">aVar</span><span class="p">:</span> <span class="n">String</span><span class="o">?</span>
 </code></pre></div>
 <h5 id="控制流">控制流</h5>
@@ -284,7 +284,7 @@
 
 <p>闭包使用<code>({})</code>包起来，使用关键字<code>in</code>分隔函数头和函数体，其中如果上下文语意明确可以忽略函数头中的变量名或返回值或全部。</p>
 
-<p>如果函数体只有一行不需要显示<code>return</code>返回值，那句唯一的执行语句就会作为返回值。</p>
+<p>如果函数体只有一行不需要显式<code>return</code>返回值，那句唯一的执行语句就会作为返回值。</p>
 
 <p>闭包体中可以用参数序号来访问（<code>$0</code>, <code>$1</code>）</p>
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">//以下三种闭包声明，实现的功能相同</span>
@@ -344,7 +344,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>如上代码所示，子类覆盖父类必须用<code>override</code>关键字显示声明，否则会报错。这也体现了swift编译器的严谨，防止写代码时覆盖父类的方法。</p>
+<p>如上代码所示，子类覆盖父类必须用<code>override</code>关键字显式声明，否则会报错。这也体现了swift编译器的严谨，防止写代码时覆盖父类的方法。</p>
 
 <p>计算型属性，可以有<code>get</code>和<code>set</code>方法，<code>set</code>的默认参数名就是<code>newValue</code></p>
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">class</span> <span class="nl">EquilateralTriangle</span><span class="p">:</span> <span class="n">NamedShape</span> <span class="p">{</span>
@@ -525,7 +525,7 @@
 <span class="k">var</span> <span class="nl">possibleInteger</span><span class="p">:</span> <span class="n">OptionalValue</span><span class="o">&lt;</span><span class="n">Int</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">.</span><span class="n">None</span>
 <span class="n">possibleInteger</span> <span class="o">=</span> <span class="p">.</span><span class="n">Some</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </code></pre></div>
-<p>可以使用<code>where</code>来限制泛型类型的要求，如遵守某种协议，或两个泛型是否是同一个类型等。在简单情况下，可以省略<code>where</code>。</p>
+<p>可以使用<code>where</code>来限制泛型类型，如遵守某种协议，或两个泛型是否是同一个类型等。在简单情况下，可以省略<code>where</code>。</p>
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">func</span> <span class="n">anyCommonElements</span> <span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span> <span class="k">where</span> <span class="nl">T</span><span class="p">:</span> <span class="n">SequenceType</span><span class="p">,</span> <span class="nl">U</span><span class="p">:</span> <span class="n">SequenceType</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">Generator</span><span class="p">.</span><span class="nl">Element</span><span class="p">:</span> <span class="n">Equatable</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">Generator</span><span class="p">.</span><span class="n">Element</span> <span class="o">==</span> <span class="n">U</span><span class="p">.</span><span class="n">Generator</span><span class="p">.</span><span class="n">Element</span><span class="o">&gt;</span> <span class="p">(</span><span class="nl">lhs</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="nl">rhs</span><span class="p">:</span> <span class="n">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="p">{</span>
     <span class="k">for</span> <span class="n">lhsItem</span> <span class="k">in</span> <span class="n">lhs</span> <span class="p">{</span>
         <span class="k">for</span> <span class="n">rhsItem</span> <span class="k">in</span> <span class="n">rhs</span> <span class="p">{</span>
