@@ -15,8 +15,7 @@ duoshuo: "zhome"
 # Google analytics
 google_analytics: "UA-48454026-2"
 
-encoding: "utf-8"
-
+encoding: UTF-8
 # Optional features
 animated:           true
 show_related_posts: false
