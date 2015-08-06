@@ -7,6 +7,24 @@
     <atom:link href="http://nealsun.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Functions and Closures in Swift</title>
+        <description>&lt;p&gt;未完待续...&lt;/p&gt;
+</description>
+        <pubDate>Wed, 05 Aug 2015 08:33:00 +0800</pubDate>
+        <link>http://nealsun.github.io/swift/ios/apple/cocoa/2015/08/05/Functions-and-Closures-in-Swift/</link>
+        <guid isPermaLink="true">http://nealsun.github.io/swift/ios/apple/cocoa/2015/08/05/Functions-and-Closures-in-Swift/</guid>
+      </item>
+    
+      <item>
+        <title>Enums、Structs、Classes in Swift</title>
+        <description>&lt;p&gt;未完待续...&lt;/p&gt;
+</description>
+        <pubDate>Mon, 03 Aug 2015 08:33:00 +0800</pubDate>
+        <link>http://nealsun.github.io/swift/ios/apple/cocoa/2015/08/03/Enums-Structs-Classes-in-Swift/</link>
+        <guid isPermaLink="true">http://nealsun.github.io/swift/ios/apple/cocoa/2015/08/03/Enums-Structs-Classes-in-Swift/</guid>
+      </item>
+    
+      <item>
         <title>Swift</title>
         <description>&lt;h3 id=&quot;modern-programming-language&quot;&gt;Modern Programming Language&lt;/h3&gt;
 
