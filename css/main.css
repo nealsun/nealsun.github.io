@@ -906,6 +906,13 @@ body {
 .post:last-child .post-eof.post-eof.post-eof {
   display: none;
 }
+@font-face {
+  font-family: "FontAwesome";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/font-awesome/fontawesome-webfont.eot?v=#4.0.3");
+  src: url("../fonts/font-awesome/fontawesome-webfont.eot?#iefix&v=#4.0.3") format("embedded-opentype"), url("../fonts/font-awesome/fontawesome-webfont.woff?v=#4.0.3") format("woff"), url("../fonts/font-awesome/font/fontawesome-webfont.ttf?v=#4.0.3") format("truetype"), url("../fonts/font-awesome/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.3") format("svg");
+}
 .sidebar-toggle {
   position: fixed;
   right: 50px;
@@ -982,6 +989,7 @@ body {
   height: auto;
   border: 2px solid #333;
   padding: 2px;
+  border-radius: 50%;
 }
 .site-author-name {
   margin: 5px 0 0;
@@ -1038,24 +1046,54 @@ body {
 }
 .links-of-author {
   margin-top: 20px;
+  width: 18em;
+}
+.links-of-author {
+  width: 100%;
+  margin: 0 auto;
+  float: left;
+  padding-left: 3%;
+}
+@media only screen and (min-width: 568px) {
+  .links-of-author {
+    padding-left: 20%;
+  }
 }
 .links-of-author a {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  border-bottom-color: #555;
-  font-size: 13px;
+  float: left;
+  display: block;
+  width: 14%;
+  color: #fff;
+  font-size: 150%;
+  padding: 0.5em;
 }
-.links-of-author a:before {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 3px;
-  content: " ";
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #36aa7c;
+@media only screen and (min-width: 1024px) {
+  .links-of-author a {
+    padding: 0.3em;
+  }
+}
+.links-of-author a:hover:before {
+  color: #2ca6cb;
+}
+.links-of-author a[title="weibo"]::before,
+.links-of-author a[title="twitter"]::before,
+.links-of-author a[title="github"]::before,
+.links-of-author a[title="facebook"]::before {
+  font-family: "FontAwesome";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.links-of-author a[title="weibo"]::before {
+  content: "\f18a";
+}
+.links-of-author a[title="twitter"]::before {
+  content: "\f099";
+}
+.links-of-author a[title="github"]::before {
+  content: "\f09b";
+}
+.links-of-author a[title="facebook"]::before {
+  content: "\f09a";
 }
 .sidebar-nav {
   margin: 0;
