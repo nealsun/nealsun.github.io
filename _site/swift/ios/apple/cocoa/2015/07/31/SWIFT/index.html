@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Swift &#8211; 东篱下</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Swift集合了编程语言最新的研究成果和多年来开发苹果平台的经验。引入了命名参数，类型推断，模块化，arc等特性">
+    <meta name="author" content="大Z">
+    <meta name="keywords" content="swift, ios, apple, cocoa">
+    <link rel="canonical" href="http://nealsun.github.io/swift/ios/apple/cocoa/2015/07/31/SWIFT/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="/css/ds.css" type="text/css">
+    <link rel="stylesheet" href="/css/custom.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.useso.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Swift">
+    <meta property="og:description" content="闲言碎语不要讲">
+    <meta property="og:url" content="http://nealsun.github.io/swift/ios/apple/cocoa/2015/07/31/SWIFT/">
+    <meta property="og:site_name" content="东篱下">
+    
+
+</head>
+
+<body class="animated fade-in-down">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://nealsun.github.io" class="site-title">东篱下</a>
+      <nav class="site-nav right">
+        <a href="/about/">About</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/nealsun"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:sunweirong32@163.com"></a>
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  
+  <h1 class="py2">Swift</h1>
+  
+  <div class="post-meta-detail">
+  <span class="post-meta">07月 31日, 2015</span><br>
+  
+  <span class="post-meta small">17 minute read</span>
+  </div>
+</div>
+
+<article class="post-content">
+  <h3 id="modern-programming-language">Modern Programming Language</h3>
+
+<p>​     何为modern，即modern language有哪些特点？苹果文档是这样描述的：</p>
+
+<blockquote>
+<p>Swift is the result of the latest research on programming languages, combined with decades of experience building Apple platforms. Named parameters brought forward from Objective-C are expressed in a clean syntax that makes APIs in Swift even easier to read and maintain. Inferred types make code cleaner and less prone to mistakes, while modules eliminate headers and provide namespaces. Memory is managed automatically, and you don’t even need to type semi-colons. All this modern thinking results in a language that is easy and fun to use.</p>
+</blockquote>
+
+<p>Swift集合了编程语言最新的研究成果和多年来开发苹果平台的经验。引入了命名参数，类型推断，模块化，arc等特性；</p>
+
+<p>以下是其他一些重要特性：</p>
+
+<ol>
+<li>闭包</li>
+<li>元组</li>
+<li>泛型</li>
+<li>快速简洁的迭代</li>
+<li>支持<strong>方法</strong>、<strong>扩展</strong>、<strong>协议</strong>的struct</li>
+<li>函数式编程</li>
+<li>原生的错误处理机制</li>
+</ol>
+
+<p>Apple在iOS 9发布后，同时增加了Objective-c一些新语法（如数组支持类型声明），应该是为了整体向swift迁移做准备吧。</p>
+
+<h3 id="playground">Playground</h3>
+
+<p>​    Playground是随swift一同引入的一种交互式编程模式，它可以让你写代码的时候实时查看运行结果，同时playground的注释支持markdown语法，这使得playground能够方便的作为展示代码的工具，本文所有的例子也都会在playground上运行。</p>
+
+<h3 id="语法简介">语法简介</h3>
+
+<p>学习语言惯例，从<em>hello， world！</em>开始，</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="n">print</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span> <span class="c1">//Hello, world!</span>
+</code></pre></div>
+<p><img src="/images/helloworld.png" alt="helloworld"></p>
+
+<p>playground上看到的效果就是这样的，左边是swift语句，右边是该语句执行的结果。</p>
+
+<p><span class="red">注意：</span>swift的字符串不需要像objc一样以<code class="inline-code">@</code>开头。</p>
+
+<h5 id="变量声明">变量声明</h5>
+
+<p>swift分别使用关键字<code class="inline-code">let</code>和<code class="inline-code">var</code>来声明常量和变量，变量类型的声明跟在名称后面用<code class="inline-code">：</code>分隔。 不过swift引入了类型推断，当编译器可以推断出变量的类型时，不需要显式的声明变量类型。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">let</span> <span class="n">aConst</span> <span class="o">=</span> <span class="mf">70.0</span> <span class="c1">//double，编译器根据字面量70.0推断类型是double</span>
+<a name="line-2"></a><span class="k">var</span> <span class="n">aVar</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1">//int，编译器根据字面量30推断类型是int</span>
+<a name="line-3"></a><span class="k">let</span> <span class="nl">aDoubleConst</span><span class="p">:</span> <span class="n">Double</span> <span class="o">=</span> <span class="mi">70</span> <span class="c1">//double， 需要显式声明，因为赋了int的字面量，编译器会推断为整型</span>
+<a name="line-4"></a><span class="k">var</span> <span class="nl">aStringVar</span><span class="p">:</span> <span class="n">String</span> <span class="c1">//string，需要显式声明，因为只声明了变量名，编译器缺少推断信息</span>
+</code></pre></div>
+<p>更好玩的是swift支持使用unicode来声明变量，我们可以拿个emoji表情来声明更形象的变量名。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">let</span> <span class="err">🐷</span> <span class="o">=</span> <span class="s">&quot;pig&quot;</span>
+<a name="line-2"></a><span class="k">let</span> <span class="err">🐶</span> <span class="o">=</span> <span class="s">&quot;dog&quot;</span>
+</code></pre></div>
+<p>格式化字符串也变得简单直观，通过<code class="inline-code">\()</code>把需要替换的变量包起来</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">let</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;丁丁&quot;</span>
+<a name="line-2"></a><span class="k">let</span> <span class="n">height</span> <span class="o">=</span> <span class="mf">1.8</span>
+<a name="line-3"></a><span class="k">let</span> <span class="n">weight</span> <span class="o">=</span> <span class="mf">77.0</span>
+<a name="line-4"></a><span class="k">let</span> <span class="n">tall</span> <span class="o">=</span> <span class="s">&quot;\(name)的身高是\(height)m,体重是\(weight)kg，那么他的BMI是\(weight/(height*height))&quot;</span>
+</code></pre></div>
+<p>声明数组和词典可以用字面量或者初始化方法</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">var</span> <span class="n">aArray</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;apple&quot;</span><span class="p">,</span> <span class="s">&quot;banana&quot;</span><span class="p">,</span> <span class="s">&quot;orange&quot;</span><span class="p">]</span>
+<a name="line-2"></a><span class="n">aArray</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;peach&quot;</span>
+<a name="line-3"></a>
+<a name="line-4"></a><span class="k">var</span> <span class="n">aDict</span> <span class="o">=</span> <span class="p">[</span>
+<a name="line-5"></a>                <span class="s">&quot;name&quot;</span><span class="o">:</span> <span class="s">&quot;jack&quot;</span><span class="p">,</span>
+<a name="line-6"></a>                <span class="s">&quot;class&quot;</span><span class="o">:</span> <span class="s">&quot;math&quot;</span><span class="p">,</span>
+<a name="line-7"></a>            <span class="p">]</span>
+<a name="line-8"></a><span class="n">aDict</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;jim&quot;</span>
+<a name="line-9"></a>
+<a name="line-10"></a><span class="k">let</span> <span class="n">emptyArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">String</span><span class="p">]()</span>
+<a name="line-11"></a><span class="k">let</span> <span class="n">emptyDictionary</span> <span class="o">=</span> <span class="p">[</span><span class="nl">String</span><span class="p">:</span> <span class="n">Float</span><span class="p">]()</span>
+</code></pre></div>
+<p>swift的<code class="inline-code">Array</code>和<code class="inline-code">Dictionary</code>是有类型的，如果一个<code class="inline-code">Array</code>声明为一个<code class="inline-code">String</code>类型，那么就不能给他增加其他类型的变量，而objc的<code class="inline-code">NSArray</code>可以添加任何对象，swift为了兼容这一点引入了几个特殊类型，<code class="inline-code">AnyObject</code>和<code class="inline-code">Any</code>，使得<code class="inline-code">[AnyObject]</code>能添加任何对象。这样真的大丈夫？为了兼容损失了一丢丢的优雅？</p>
+
+<p>另外swift的<code class="inline-code">Array</code>和<code class="inline-code">Dictionary</code>是没有mutable和immutable类型区分的，是否可变取决于声明时是<code class="inline-code">let</code>还是<code class="inline-code">var</code>。</p>
+
+<p>实验遇到一个问题，感觉挺割裂的...</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">var</span> <span class="n">objcList</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">//类型推断是NSArray</span>
+<a name="line-2"></a><span class="k">var</span> <span class="nl">swiftList</span><span class="p">:</span> <span class="p">[</span><span class="n">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">//这样就是Array了</span>
+</code></pre></div>
+<h5 id="optional">Optional</h5>
+
+<p>前面声明的变量都是不能设置为<code class="inline-code">nil</code>的，如果需要设置<code class="inline-code">nil</code>，需要在声明的时候在类型后面增加<code class="inline-code">?</code>标识符，他表示这个变量可能有值可能是<code class="inline-code">nil</code>。 Optinal在swift中是个重要的概念，后面专门写一篇来介绍。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">var</span> <span class="nl">aVar</span><span class="p">:</span> <span class="n">String</span><span class="o">?</span>
+</code></pre></div>
+<h5 id="控制流">控制流</h5>
+
+<p><code class="inline-code">if</code>语句</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">var</span> <span class="n">condition</span> <span class="o">=</span> <span class="nb">true</span>
+<a name="line-2"></a><span class="k">if</span> <span class="n">condition</span> <span class="p">{</span>
+<a name="line-3"></a>    <span class="p">...</span>
+<a name="line-4"></a><span class="p">}</span>
+</code></pre></div>
+<p>condition必须是布尔表达式，所以c或objc那种习惯非0非空的隐式转换的思维行不通了。</p>
+
+<p>判断Optional是否为空的正确姿势是：使用<code class="inline-code">let</code>或者<code class="inline-code">var</code>声明常量赋值，如果Optional是空，那么进入<code class="inline-code">else</code>语句，否则Optional解开后赋值给声明的变量，且在语句中可以直接使用该变量。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">var</span> <span class="nl">optionalName</span><span class="p">:</span> <span class="n">String</span><span class="o">?</span> <span class="o">=</span> <span class="s">&quot;John Appleseed&quot;</span>
+<a name="line-2"></a><span class="k">var</span> <span class="n">greeting</span> <span class="o">=</span> <span class="s">&quot;Hello!&quot;</span>
+<a name="line-3"></a><span class="k">if</span> <span class="k">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">optionalName</span> <span class="p">{</span>
+<a name="line-4"></a>    <span class="n">greeting</span> <span class="o">=</span> <span class="s">&quot;Hello, \(name)&quot;</span>
+<a name="line-5"></a><span class="p">}</span>
+</code></pre></div>
+<p><code class="inline-code">for ... in ...</code>语句</p>
+
+<p><code class="inline-code">for  in</code>可以用来遍历数组和字典，如果你不关心遍历的值，可以用<code class="inline-code">_</code>代替。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">let</span> <span class="n">aArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<a name="line-2"></a><span class="k">for</span> <span class="n">num</span> <span class="k">in</span> <span class="n">aArray</span> <span class="p">{</span>
+<a name="line-3"></a>  <span class="n">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<a name="line-4"></a><span class="p">}</span>
+<a name="line-5"></a>
+<a name="line-6"></a><span class="k">let</span> <span class="n">aDict</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;1&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;2&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&quot;3&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">]</span>
+<a name="line-7"></a><span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">in</span> <span class="n">aDict</span> <span class="p">{</span>
+<a name="line-8"></a>  <span class="n">print</span><span class="p">(</span><span class="s">&quot;\(key) value is \(value)&quot;</span><span class="p">)</span>
+<a name="line-9"></a><span class="p">}</span>
+<a name="line-10"></a><span class="c1">//当不关心value的值时用_代替</span>
+<a name="line-11"></a><span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span> <span class="n">aDict</span> <span class="p">{</span>
+<a name="line-12"></a>  <span class="n">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<a name="line-13"></a><span class="p">}</span>
+</code></pre></div>
+<p><code class="inline-code">...</code>和<code class="inline-code">..<</code>是<code class="inline-code">for in</code>迭代index的简化写法，<code class="inline-code">…</code>包括起始值和结束值，<code class="inline-code">..<</code>包括起始值但不包括结束值，直接看代码吧。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="c1">//原来</span>
+<a name="line-2"></a><span class="k">for</span> <span class="k">let</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+<a name="line-3"></a>  <span class="p">...</span>
+<a name="line-4"></a><span class="p">}</span>
+<a name="line-5"></a>
+<a name="line-6"></a><span class="c1">//现在</span>
+<a name="line-7"></a><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">.</span><span class="o">&lt;</span><span class="mi">10</span> <span class="p">{</span>
+<a name="line-8"></a>  <span class="p">...</span>
+<a name="line-9"></a><span class="p">}</span>
+</code></pre></div>
+<p><code class="inline-code">switch</code>变得强大的多，不限于整型值的比较，且比较的方式也变得更加丰富，但<code class="inline-code">switch</code>需要列出完整的<code class="inline-code">case</code>，如果没有完整列出那么<code class="inline-code">default</code>是必须的。所以在遍历枚举类型时，要么完整列出所有枚举值，要么必须加上<code class="inline-code">default</code>。</p>
+
+<p>另外每一个<code class="inline-code">case</code>不需要添加<code class="inline-code">break</code>语句，因为swift的<code class="inline-code">switch</code>语句不会自动执行下一个case。如果需要多个case执行同一个语句，可以把多个判断写在同一个case中用<strong>，</strong>好分开。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">let</span> <span class="n">vegetable</span> <span class="o">=</span> <span class="s">&quot;red pepper&quot;</span>
+<a name="line-2"></a><span class="k">switch</span> <span class="n">vegetable</span> <span class="p">{</span>
+<a name="line-3"></a><span class="k">case</span> <span class="s">&quot;celery&quot;</span><span class="o">:</span>
+<a name="line-4"></a>    <span class="k">let</span> <span class="n">vegetableComment</span> <span class="o">=</span> <span class="s">&quot;Add some raisins and make ants on a log.&quot;</span>
+<a name="line-5"></a><span class="k">case</span> <span class="s">&quot;cucumber&quot;</span><span class="p">,</span> <span class="s">&quot;watercress&quot;</span><span class="o">:</span>
+<a name="line-6"></a>    <span class="k">let</span> <span class="n">vegetableComment</span> <span class="o">=</span> <span class="s">&quot;That would make a good tea sandwich.&quot;</span>
+<a name="line-7"></a><span class="k">case</span> <span class="k">let</span> <span class="n">x</span> <span class="k">where</span> <span class="n">x</span><span class="p">.</span><span class="n">hasSuffix</span><span class="p">(</span><span class="s">&quot;pepper&quot;</span><span class="p">)</span><span class="o">:</span>
+<a name="line-8"></a>    <span class="k">let</span> <span class="n">vegetableComment</span> <span class="o">=</span> <span class="s">&quot;Is it a spicy \(x)?&quot;</span>
+<a name="line-9"></a><span class="k">default</span><span class="o">:</span>
+<a name="line-10"></a>    <span class="k">let</span> <span class="n">vegetableComment</span> <span class="o">=</span> <span class="s">&quot;Everything tastes good in soup.&quot;</span>
+<a name="line-11"></a><span class="p">}</span>
+</code></pre></div>
+<h5 id="函数和闭包">函数和闭包</h5>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">func</span> <span class="n">sayHello</span><span class="p">(</span><span class="nl">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="nl">day</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">String</span> <span class="p">{</span>
+<a name="line-2"></a>    <span class="k">return</span> <span class="s">&quot;Hello \(name), today is \(day).&quot;</span>
+<a name="line-3"></a><span class="p">}</span>
+</code></pre></div>
+<p>关键字<code class="inline-code">func</code>声明一个函数， 紧跟着函数名sayHello，函数名后<code class="inline-code">()</code>内是形参，参数名在前类型在后，和变量声明一样， <code class="inline-code">-></code>后面是函数返回类型，swift允许函数通过元组返回多个值 。</p>
+
+<p>在swift里，函数是一等公民，所以函数可以作为返回值，作为函数参数，函数可以嵌套在函数里。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="c1">//函数嵌套</span>
+<a name="line-2"></a><span class="k">func</span> <span class="nf">returnFifteen</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Int</span> <span class="p">{</span>
+<a name="line-3"></a>    <span class="k">var</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">10</span>
+<a name="line-4"></a>    <span class="k">func</span> <span class="n">add</span><span class="p">()</span> <span class="p">{</span>
+<a name="line-5"></a>        <span class="n">y</span> <span class="o">+=</span> <span class="mi">5</span>
+<a name="line-6"></a>    <span class="p">}</span>
+<a name="line-7"></a>    <span class="n">add</span><span class="p">()</span>
+<a name="line-8"></a>    <span class="k">return</span> <span class="n">y</span>
+<a name="line-9"></a><span class="p">}</span>
+<a name="line-10"></a><span class="n">returnFifteen</span><span class="p">()</span>
+<a name="line-11"></a>
+<a name="line-12"></a><span class="c1">//函数作为返回值</span>
+<a name="line-13"></a><span class="k">func</span> <span class="n">makeIncrementer</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">Int</span> <span class="o">-&gt;</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span>
+<a name="line-14"></a>    <span class="k">func</span> <span class="n">addOne</span><span class="p">(</span><span class="nl">number</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Int</span> <span class="p">{</span>
+<a name="line-15"></a>        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">number</span>
+<a name="line-16"></a>    <span class="p">}</span>
+<a name="line-17"></a>    <span class="k">return</span> <span class="n">addOne</span>
+<a name="line-18"></a><span class="p">}</span>
+<a name="line-19"></a><span class="k">var</span> <span class="n">increment</span> <span class="o">=</span> <span class="n">makeIncrementer</span><span class="p">()</span>
+<a name="line-20"></a><span class="n">increment</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<a name="line-21"></a>
+<a name="line-22"></a><span class="c1">//函数作为参数</span>
+<a name="line-23"></a><span class="k">func</span> <span class="n">hasAnyMatches</span><span class="p">(</span><span class="nl">list</span><span class="p">:</span> <span class="p">[</span><span class="n">Int</span><span class="p">],</span> <span class="nl">condition</span><span class="p">:</span> <span class="n">Int</span> <span class="o">-&gt;</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="p">{</span>
+<a name="line-24"></a>    <span class="k">for</span> <span class="n">item</span> <span class="k">in</span> <span class="n">list</span> <span class="p">{</span>
+<a name="line-25"></a>        <span class="k">if</span> <span class="n">condition</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+<a name="line-26"></a>            <span class="k">return</span> <span class="nb">true</span>
+<a name="line-27"></a>        <span class="p">}</span>
+<a name="line-28"></a>    <span class="p">}</span>
+<a name="line-29"></a>    <span class="k">return</span> <span class="nb">false</span>
+<a name="line-30"></a><span class="p">}</span>
+<a name="line-31"></a><span class="k">func</span> <span class="n">lessThanTen</span><span class="p">(</span><span class="nl">number</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="p">{</span>
+<a name="line-32"></a>    <span class="k">return</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">10</span>
+<a name="line-33"></a><span class="p">}</span>
+<a name="line-34"></a><span class="k">var</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<a name="line-35"></a><span class="n">hasAnyMatches</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">lessThanTen</span><span class="p">)</span>
+</code></pre></div>
+<p>闭包</p>
+
+<p>函数是特殊的闭包。闭包是把声明时的上下文封装起来，即使调用时在不同的上下文。</p>
+
+<p>闭包的语法</p>
+
+<p>闭包使用<code class="inline-code">({})</code>包起来，使用关键字<code class="inline-code">in</code>分隔函数头和函数体，其中如果上下文语意明确可以忽略函数头中的变量名或返回值或全部。</p>
+
+<p>如果函数体只有一行不需要显式<code class="inline-code">return</code>返回值，那句唯一的执行语句就会作为返回值。</p>
+
+<p>闭包体中可以用参数序号来访问（<code class="inline-code">$0</code>, <code class="inline-code">$1</code>）</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="c1">//以下三种闭包声明，实现的功能相同</span>
+<a name="line-2"></a><span class="k">let</span> <span class="n">mappedNumbers</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="n">map</span><span class="p">({</span>
+<a name="line-3"></a>    <span class="p">(</span><span class="nl">number</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Int</span> <span class="k">in</span>
+<a name="line-4"></a>    <span class="k">let</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">number</span>
+<a name="line-5"></a>    <span class="k">return</span> <span class="n">result</span>
+<a name="line-6"></a><span class="p">})</span>
+<a name="line-7"></a>
+<a name="line-8"></a><span class="k">let</span> <span class="n">mappedNumbers</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="n">map</span><span class="p">({</span> <span class="n">number</span> <span class="k">in</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">number</span> <span class="p">})</span>
+<a name="line-9"></a>
+<a name="line-10"></a><span class="k">let</span> <span class="n">mappedNumbers</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="n">map</span><span class="p">({</span> <span class="mi">3</span> <span class="o">*</span> <span class="err">$</span><span class="mi">0</span> <span class="p">})</span>
+</code></pre></div>
+<h5 id="类和对象">类和对象</h5>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">class</span> <span class="n">Shape</span> <span class="p">{</span>
+<a name="line-2"></a>    <span class="k">var</span> <span class="n">numberOfSides</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="line-3"></a>    <span class="k">func</span> <span class="n">simpleDescription</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">String</span> <span class="p">{</span>
+<a name="line-4"></a>        <span class="k">return</span> <span class="s">&quot;A shape with \(numberOfSides) sides.&quot;</span>
+<a name="line-5"></a>    <span class="p">}</span>
+<a name="line-6"></a><span class="p">}</span>
+</code></pre></div>
+<p>使用关键字<code class="inline-code">class</code>声明一个类，swift的对象没有统一的基类，Objc的对象都是继承与<code class="inline-code">NSObject</code>。</p>
+
+<p>实例化一个对象很简单：</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">var</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">Shape</span><span class="p">()</span>
+</code></pre></div>
+<p>继承一个类：</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">class</span> <span class="n">NamedShape</span> <span class="p">{</span>
+<a name="line-2"></a>    <span class="k">var</span> <span class="nl">numberOfSides</span><span class="p">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="line-3"></a>    <span class="k">var</span> <span class="nl">name</span><span class="p">:</span> <span class="n">String</span>
+<a name="line-4"></a>
+<a name="line-5"></a>    <span class="c1">//初始化时必须给所有属性赋值，或者在属性声明时提供默认值</span>
+<a name="line-6"></a>    <span class="k">init</span><span class="p">(</span><span class="nl">name</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+<a name="line-7"></a>        <span class="nb">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a name="line-8"></a>    <span class="p">}</span>
+<a name="line-9"></a>
+<a name="line-10"></a>    <span class="k">func</span> <span class="n">simpleDescription</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">String</span> <span class="p">{</span>
+<a name="line-11"></a>        <span class="k">return</span> <span class="s">&quot;A shape with \(numberOfSides) sides.&quot;</span>
+<a name="line-12"></a>    <span class="p">}</span>
+<a name="line-13"></a><span class="p">}</span>
+<a name="line-14"></a>
+<a name="line-15"></a><span class="k">class</span> <span class="nl">Square</span><span class="p">:</span> <span class="n">NamedShape</span> <span class="p">{</span>
+<a name="line-16"></a>    <span class="k">var</span> <span class="nl">sideLength</span><span class="p">:</span> <span class="n">Double</span>
+<a name="line-17"></a>
+<a name="line-18"></a>    <span class="k">init</span><span class="p">(</span><span class="nl">sideLength</span><span class="p">:</span> <span class="n">Double</span><span class="p">,</span> <span class="nl">name</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+<a name="line-19"></a>        <span class="nb">self</span><span class="p">.</span><span class="n">sideLength</span> <span class="o">=</span> <span class="n">sideLength</span>
+<a name="line-20"></a>        <span class="nb">super</span><span class="p">.</span><span class="k">init</span><span class="p">(</span><span class="nl">name</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span>
+<a name="line-21"></a>        <span class="n">numberOfSides</span> <span class="o">=</span> <span class="mi">4</span>
+<a name="line-22"></a>    <span class="p">}</span>
+<a name="line-23"></a>
+<a name="line-24"></a>    <span class="k">func</span> <span class="n">area</span><span class="p">()</span> <span class="o">-&gt;</span>  <span class="n">Double</span> <span class="p">{</span>
+<a name="line-25"></a>        <span class="k">return</span> <span class="n">sideLength</span> <span class="o">*</span> <span class="n">sideLength</span>
+<a name="line-26"></a>    <span class="p">}</span>
+<a name="line-27"></a>
+<a name="line-28"></a>    <span class="kr">override</span> <span class="k">func</span> <span class="n">simpleDescription</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">String</span> <span class="p">{</span>
+<a name="line-29"></a>        <span class="k">return</span> <span class="s">&quot;A square with sides of length \(sideLength).&quot;</span>
+<a name="line-30"></a>    <span class="p">}</span>
+<a name="line-31"></a><span class="p">}</span>
+</code></pre></div>
+<p>如上代码所示，子类覆盖父类必须用<code class="inline-code">override</code>关键字显式声明，否则会报错。这也体现了swift编译器的严谨，防止写代码时覆盖父类的方法。</p>
+
+<p>计算型属性，可以有<code class="inline-code">get</code>和<code class="inline-code">set</code>方法，<code class="inline-code">set</code>的默认参数名就是<code class="inline-code">newValue</code></p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">class</span> <span class="nl">EquilateralTriangle</span><span class="p">:</span> <span class="n">NamedShape</span> <span class="p">{</span>
+<a name="line-2"></a>    <span class="k">var</span> <span class="nl">sideLength</span><span class="p">:</span> <span class="n">Double</span> <span class="o">=</span> <span class="mf">0.0</span>
+<a name="line-3"></a>
+<a name="line-4"></a>    <span class="k">init</span><span class="p">(</span><span class="nl">sideLength</span><span class="p">:</span> <span class="n">Double</span><span class="p">,</span> <span class="nl">name</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+<a name="line-5"></a>        <span class="nb">self</span><span class="p">.</span><span class="n">sideLength</span> <span class="o">=</span> <span class="n">sideLength</span>
+<a name="line-6"></a>        <span class="nb">super</span><span class="p">.</span><span class="k">init</span><span class="p">(</span><span class="nl">name</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span>
+<a name="line-7"></a>        <span class="n">numberOfSides</span> <span class="o">=</span> <span class="mi">3</span>
+<a name="line-8"></a>    <span class="p">}</span>
+<a name="line-9"></a>
+<a name="line-10"></a>    <span class="k">var</span> <span class="nl">perimeter</span><span class="p">:</span> <span class="n">Double</span> <span class="p">{</span>
+<a name="line-11"></a>        <span class="kr">get</span> <span class="p">{</span>
+<a name="line-12"></a>            <span class="k">return</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">sideLength</span>
+<a name="line-13"></a>        <span class="p">}</span>
+<a name="line-14"></a>        <span class="kr">set</span> <span class="p">{</span>
+<a name="line-15"></a>            <span class="n">sideLength</span> <span class="o">=</span> <span class="n">newValue</span> <span class="o">/</span> <span class="mf">3.0</span>
+<a name="line-16"></a>        <span class="p">}</span>
+<a name="line-17"></a>    <span class="p">}</span>
+<a name="line-18"></a>
+<a name="line-19"></a>    <span class="kr">override</span> <span class="k">func</span> <span class="n">simpleDescription</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">String</span> <span class="p">{</span>
+<a name="line-20"></a>        <span class="k">return</span> <span class="s">&quot;An equilateral triangle with sides of length \(sideLength).&quot;</span>
+<a name="line-21"></a>    <span class="p">}</span>
+<a name="line-22"></a><span class="p">}</span>
+</code></pre></div>
+<p>计算型属性通<code class="inline-code">set</code>方法，可以在属性被设置前后增加代码控制这个设置过程。那么对于存储型属性，swift提供了<code class="inline-code">willSet</code>和<code class="inline-code">didSet</code>方法来控制设置过程。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">class</span> <span class="n">TriangleAndSquare</span> <span class="p">{</span>
+<a name="line-2"></a>    <span class="k">var</span> <span class="nl">triangle</span><span class="p">:</span> <span class="n">EquilateralTriangle</span> <span class="p">{</span>
+<a name="line-3"></a>        <span class="kr">willSet</span> <span class="p">{</span>
+<a name="line-4"></a>            <span class="n">square</span><span class="p">.</span><span class="n">sideLength</span> <span class="o">=</span> <span class="n">newValue</span><span class="p">.</span><span class="n">sideLength</span>
+<a name="line-5"></a>        <span class="p">}</span>
+<a name="line-6"></a>    <span class="p">}</span>
+<a name="line-7"></a>    <span class="k">var</span> <span class="nl">square</span><span class="p">:</span> <span class="n">Square</span> <span class="p">{</span>
+<a name="line-8"></a>        <span class="kr">willSet</span> <span class="p">{</span>
+<a name="line-9"></a>            <span class="n">triangle</span><span class="p">.</span><span class="n">sideLength</span> <span class="o">=</span> <span class="n">newValue</span><span class="p">.</span><span class="n">sideLength</span>
+<a name="line-10"></a>        <span class="p">}</span>
+<a name="line-11"></a>    <span class="p">}</span>
+<a name="line-12"></a>    <span class="k">init</span><span class="p">(</span><span class="nl">size</span><span class="p">:</span> <span class="n">Double</span><span class="p">,</span> <span class="nl">name</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+<a name="line-13"></a>        <span class="n">square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">(</span><span class="nl">sideLength</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span> <span class="nl">name</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span>
+<a name="line-14"></a>        <span class="n">triangle</span> <span class="o">=</span> <span class="n">EquilateralTriangle</span><span class="p">(</span><span class="nl">sideLength</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span> <span class="nl">name</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span>
+<a name="line-15"></a>    <span class="p">}</span>
+<a name="line-16"></a><span class="p">}</span>
+</code></pre></div>
+<h5 id="枚举和结构">枚举和结构</h5>
+
+<p>swift大大增强了<code class="inline-code">Enum</code>和<code class="inline-code">Struct</code>的能力，使他们不仅仅只是一种简单的基本数据了。</p>
+
+<p>首先枚举不仅仅局限于定义整型类型，还可以关联字符串，浮点数等，甚至枚举的每一个值都不需要和某个原始类型关联，他们本身就是代表一个值。同时swift的枚举类型还能添加自己的方法。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="c1">//Rank这个Enum的原始值是Int。</span>
+<a name="line-2"></a><span class="c1">//Int作为原始值，默认就会自增，可以省略为没个case赋原始值</span>
+<a name="line-3"></a><span class="k">enum</span> <span class="nl">Rank</span><span class="p">:</span> <span class="n">Int</span> <span class="p">{</span>
+<a name="line-4"></a>    <span class="k">case</span> <span class="n">Ace</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="line-5"></a>    <span class="k">case</span> <span class="n">Two</span><span class="p">,</span> <span class="n">Three</span><span class="p">,</span> <span class="n">Four</span><span class="p">,</span> <span class="n">Five</span><span class="p">,</span> <span class="n">Six</span><span class="p">,</span> <span class="n">Seven</span><span class="p">,</span> <span class="n">Eight</span><span class="p">,</span> <span class="n">Nine</span><span class="p">,</span> <span class="n">Ten</span>
+<a name="line-6"></a>    <span class="k">case</span> <span class="n">Jack</span><span class="p">,</span> <span class="n">Queen</span><span class="p">,</span> <span class="n">King</span>
+<a name="line-7"></a>    <span class="k">func</span> <span class="n">simpleDescription</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">String</span> <span class="p">{</span>
+<a name="line-8"></a>        <span class="k">switch</span> <span class="nb">self</span> <span class="p">{</span>
+<a name="line-9"></a>        <span class="k">case</span> <span class="p">.</span><span class="nl">Ace</span><span class="p">:</span>
+<a name="line-10"></a>            <span class="k">return</span> <span class="s">&quot;ace&quot;</span>
+<a name="line-11"></a>        <span class="k">case</span> <span class="p">.</span><span class="nl">Jack</span><span class="p">:</span>
+<a name="line-12"></a>            <span class="k">return</span> <span class="s">&quot;jack&quot;</span>
+<a name="line-13"></a>        <span class="k">case</span> <span class="p">.</span><span class="nl">Queen</span><span class="p">:</span>
+<a name="line-14"></a>            <span class="k">return</span> <span class="s">&quot;queen&quot;</span>
+<a name="line-15"></a>        <span class="k">case</span> <span class="p">.</span><span class="nl">King</span><span class="p">:</span>
+<a name="line-16"></a>            <span class="k">return</span> <span class="s">&quot;king&quot;</span>
+<a name="line-17"></a>        <span class="k">default</span><span class="o">:</span>
+<a name="line-18"></a>            <span class="k">return</span> <span class="n">String</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">rawValue</span><span class="p">)</span>
+<a name="line-19"></a>        <span class="p">}</span>
+<a name="line-20"></a>    <span class="p">}</span>
+<a name="line-21"></a><span class="p">}</span>
+<a name="line-22"></a><span class="k">let</span> <span class="n">ace</span> <span class="o">=</span> <span class="n">Rank</span><span class="p">.</span><span class="n">Ace</span>
+<a name="line-23"></a><span class="k">let</span> <span class="n">aceRawValue</span> <span class="o">=</span> <span class="n">ace</span><span class="p">.</span><span class="n">rawValue</span> <span class="c1">//rowValue就是enum声明时没个枚举值后面的实际值，我们也可以直接用rowValue创建一个枚举</span>
+<a name="line-24"></a><span class="k">let</span> <span class="n">aceFromRawValue</span> <span class="o">=</span> <span class="n">Rank</span><span class="p">(</span><span class="nl">rowValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// 等价于 Rank.Ace</span>
+<a name="line-25"></a>
+<a name="line-26"></a><span class="c1">//Enum也可以没有枚举值。没有枚举值的时候，不需要声明枚举值的类型</span>
+<a name="line-27"></a><span class="k">enum</span> <span class="n">Suit</span> <span class="p">{</span>
+<a name="line-28"></a>    <span class="k">case</span> <span class="n">Spades</span><span class="p">,</span> <span class="n">Hearts</span><span class="p">,</span> <span class="n">Diamonds</span><span class="p">,</span> <span class="n">Clubs</span>
+<a name="line-29"></a>    <span class="k">func</span> <span class="n">simpleDescription</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">String</span> <span class="p">{</span>
+<a name="line-30"></a>        <span class="k">switch</span> <span class="nb">self</span> <span class="p">{</span>
+<a name="line-31"></a>        <span class="k">case</span> <span class="p">.</span><span class="nl">Spades</span><span class="p">:</span>
+<a name="line-32"></a>            <span class="k">return</span> <span class="s">&quot;spades&quot;</span>
+<a name="line-33"></a>        <span class="k">case</span> <span class="p">.</span><span class="nl">Hearts</span><span class="p">:</span>
+<a name="line-34"></a>            <span class="k">return</span> <span class="s">&quot;hearts&quot;</span>
+<a name="line-35"></a>        <span class="k">case</span> <span class="p">.</span><span class="nl">Diamonds</span><span class="p">:</span>
+<a name="line-36"></a>            <span class="k">return</span> <span class="s">&quot;diamonds&quot;</span>
+<a name="line-37"></a>        <span class="k">case</span> <span class="p">.</span><span class="nl">Clubs</span><span class="p">:</span>
+<a name="line-38"></a>            <span class="k">return</span> <span class="s">&quot;clubs&quot;</span>
+<a name="line-39"></a>        <span class="p">}</span>
+<a name="line-40"></a>    <span class="p">}</span>
+<a name="line-41"></a><span class="p">}</span>
+<a name="line-42"></a><span class="k">let</span> <span class="n">hearts</span> <span class="o">=</span> <span class="n">Suit</span><span class="p">.</span><span class="n">Hearts</span>
+<a name="line-43"></a><span class="k">let</span> <span class="n">heartsDescription</span> <span class="o">=</span> <span class="n">hearts</span><span class="p">.</span><span class="n">simpleDescription</span><span class="p">()</span>
+</code></pre></div>
+<p>除了<code class="inline-code">rowValue</code>，<code class="inline-code">Enum</code>还可以有关联值，每个<code class="inline-code">Enum</code>的实例都有一样的原始值，但可以有不同的关联值，这时候可以如下定一个枚举类型</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">enum</span> <span class="n">ServerResponse</span> <span class="p">{</span>
+<a name="line-2"></a>    <span class="k">case</span> <span class="n">Result</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="p">)</span>
+<a name="line-3"></a>    <span class="k">case</span> <span class="n">Error</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+<a name="line-4"></a><span class="p">}</span>
+<a name="line-5"></a>
+<a name="line-6"></a><span class="k">let</span> <span class="n">success</span> <span class="o">=</span> <span class="n">ServerResponse</span><span class="p">.</span><span class="n">Result</span><span class="p">(</span><span class="s">&quot;6:00 am&quot;</span><span class="p">,</span> <span class="s">&quot;8:09 pm&quot;</span><span class="p">)</span>
+<a name="line-7"></a><span class="k">let</span> <span class="n">failure</span> <span class="o">=</span> <span class="n">ServerResponse</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&quot;Out of cheese.&quot;</span><span class="p">)</span>
+<a name="line-8"></a>
+<a name="line-9"></a><span class="k">switch</span> <span class="n">success</span> <span class="p">{</span>
+<a name="line-10"></a><span class="k">case</span> <span class="k">let</span> <span class="p">.</span><span class="n">Result</span><span class="p">(</span><span class="n">sunrise</span><span class="p">,</span> <span class="n">sunset</span><span class="p">)</span><span class="o">:</span>
+<a name="line-11"></a>    <span class="k">let</span> <span class="n">serverResponse</span> <span class="o">=</span> <span class="s">&quot;Sunrise is at \(sunrise) and sunset is at \(sunset).&quot;</span>
+<a name="line-12"></a><span class="k">case</span> <span class="k">let</span> <span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="o">:</span>
+<a name="line-13"></a>    <span class="k">let</span> <span class="n">serverResponse</span> <span class="o">=</span> <span class="s">&quot;Failure...  \(error)&quot;</span>
+<a name="line-14"></a><span class="p">}</span>
+</code></pre></div>
+<p>在swift中，struct几乎和class有一样的能力，最大的一个不同就是struct是值传递，class是引用传递。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">struct</span> <span class="n">Card</span> <span class="p">{</span>
+<a name="line-2"></a>    <span class="k">var</span> <span class="nl">rank</span><span class="p">:</span> <span class="n">Rank</span>
+<a name="line-3"></a>    <span class="k">var</span> <span class="nl">suit</span><span class="p">:</span> <span class="n">Suit</span>
+<a name="line-4"></a>    <span class="k">func</span> <span class="n">simpleDescription</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">String</span> <span class="p">{</span>
+<a name="line-5"></a>        <span class="k">return</span> <span class="s">&quot;The \(rank.simpleDescription()) of \(suit.simpleDescription())&quot;</span>
+<a name="line-6"></a>    <span class="p">}</span>
+<a name="line-7"></a><span class="p">}</span>
+<a name="line-8"></a><span class="k">let</span> <span class="n">threeOfSpades</span> <span class="o">=</span> <span class="n">Card</span><span class="p">(</span><span class="nl">rank</span><span class="p">:</span> <span class="p">.</span><span class="n">Three</span><span class="p">,</span> <span class="nl">suit</span><span class="p">:</span> <span class="p">.</span><span class="n">Spades</span><span class="p">)</span>
+<a name="line-9"></a><span class="k">let</span> <span class="n">threeOfSpadesDescription</span> <span class="o">=</span> <span class="n">threeOfSpades</span><span class="p">.</span><span class="n">simpleDescription</span><span class="p">()</span>
+</code></pre></div>
+<h5 id="协议和扩展">协议和扩展</h5>
+
+<p>协议和扩展在意义上和Objc类似，用<code class="inline-code">protocol</code>声明协议，<code class="inline-code">extention</code>声明扩展。类，枚举，结构体都能使用协议。使用协议就像继承类一样，名称后面加协议名称并用<code class="inline-code">:</code>分开，多个协议可用逗号分开。可以使用协议声明变量，这个变量只能访问这个协议声明的方法和属性。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">protocol</span> <span class="n">ExampleProtocol</span> <span class="p">{</span>
+<a name="line-2"></a>    <span class="k">var</span> <span class="nl">simpleDescription</span><span class="p">:</span> <span class="n">String</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+<a name="line-3"></a>    <span class="kr">mutating</span> <span class="k">func</span> <span class="n">adjust</span><span class="p">()</span>   <span class="c1">//mutating表示这个方法需要修改struct属性，类是可以省略的，因为类本来就是可以修改属性的。</span>
+<a name="line-4"></a><span class="p">}</span>
+<a name="line-5"></a>
+<a name="line-6"></a><span class="k">class</span> <span class="nl">SimpleClass</span><span class="p">:</span> <span class="n">ExampleProtocol</span> <span class="p">{</span>
+<a name="line-7"></a>    <span class="k">var</span> <span class="nl">simpleDescription</span><span class="p">:</span> <span class="n">String</span> <span class="o">=</span> <span class="s">&quot;A very simple class.&quot;</span>
+<a name="line-8"></a>    <span class="k">var</span> <span class="nl">anotherProperty</span><span class="p">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">69105</span>
+<a name="line-9"></a>    <span class="k">func</span> <span class="n">adjust</span><span class="p">()</span> <span class="p">{</span>
+<a name="line-10"></a>        <span class="n">simpleDescription</span> <span class="o">+=</span> <span class="s">&quot;  Now 100% adjusted.&quot;</span>
+<a name="line-11"></a>    <span class="p">}</span>
+<a name="line-12"></a><span class="p">}</span>
+<a name="line-13"></a><span class="k">var</span> <span class="n">a</span> <span class="o">=</span> <span class="n">SimpleClass</span><span class="p">()</span>
+<a name="line-14"></a><span class="n">a</span><span class="p">.</span><span class="n">adjust</span><span class="p">()</span>
+<a name="line-15"></a><span class="k">let</span> <span class="n">aDescription</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">simpleDescription</span>
+<a name="line-16"></a>
+<a name="line-17"></a><span class="k">struct</span> <span class="nl">SimpleStructure</span><span class="p">:</span> <span class="n">ExampleProtocol</span> <span class="p">{</span>
+<a name="line-18"></a>    <span class="k">var</span> <span class="nl">simpleDescription</span><span class="p">:</span> <span class="n">String</span> <span class="o">=</span> <span class="s">&quot;A simple structure&quot;</span>
+<a name="line-19"></a>    <span class="c1">//结构体必须用mutating声明方法才能修改</span>
+<a name="line-20"></a>    <span class="kr">mutating</span> <span class="k">func</span> <span class="n">adjust</span><span class="p">()</span> <span class="p">{</span>
+<a name="line-21"></a>        <span class="n">simpleDescription</span> <span class="o">+=</span> <span class="s">&quot; (adjusted)&quot;</span>
+<a name="line-22"></a>    <span class="p">}</span>
+<a name="line-23"></a><span class="p">}</span>
+<a name="line-24"></a><span class="k">var</span> <span class="n">b</span> <span class="o">=</span> <span class="n">SimpleStructure</span><span class="p">()</span>
+<a name="line-25"></a><span class="n">b</span><span class="p">.</span><span class="n">adjust</span><span class="p">()</span>
+<a name="line-26"></a><span class="k">let</span> <span class="n">bDescription</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">simpleDescription</span>
+<a name="line-27"></a>
+<a name="line-28"></a><span class="k">extension</span> <span class="nl">Int</span><span class="p">:</span> <span class="n">ExampleProtocol</span> <span class="p">{</span>
+<a name="line-29"></a>    <span class="k">var</span> <span class="nl">simpleDescription</span><span class="p">:</span> <span class="n">String</span> <span class="p">{</span>
+<a name="line-30"></a>        <span class="k">return</span> <span class="s">&quot;The number \(self)&quot;</span>
+<a name="line-31"></a>    <span class="p">}</span>
+<a name="line-32"></a>    <span class="kr">mutating</span> <span class="k">func</span> <span class="n">adjust</span><span class="p">()</span> <span class="p">{</span>
+<a name="line-33"></a>        <span class="nb">self</span> <span class="o">+=</span> <span class="mi">42</span>
+<a name="line-34"></a>    <span class="p">}</span>
+<a name="line-35"></a><span class="p">}</span>
+</code></pre></div>
+<h5 id="泛型">泛型</h5>
+
+<p>有了泛型，可以实现更加优雅的解决方案，增加了代码的灵活性，高效性，安全性，使代码更加简洁，语意更加明确。</p>
+
+<p>可以在类，结构体，枚举，函数和方法中使用泛型。</p>
+
+<p>泛型的语法是用一对尖括号<code class="inline-code"><></code>把泛型名括起来，然后可以使用该名称来作为类型名使用。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">func</span> <span class="n">repeat</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span><span class="p">(</span><span class="nl">item</span><span class="p">:</span> <span class="n">Item</span><span class="p">,</span> <span class="nl">times</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="n">Item</span><span class="p">]</span> <span class="p">{</span>
+<a name="line-2"></a>    <span class="k">var</span> <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">Item</span><span class="p">]()</span>
+<a name="line-3"></a>    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">.</span><span class="o">&lt;</span><span class="n">times</span> <span class="p">{</span>
+<a name="line-4"></a>        <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<a name="line-5"></a>    <span class="p">}</span>
+<a name="line-6"></a>    <span class="k">return</span> <span class="n">result</span>
+<a name="line-7"></a><span class="p">}</span>
+<a name="line-8"></a>
+<a name="line-9"></a><span class="k">enum</span> <span class="n">OptionalValue</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+<a name="line-10"></a>    <span class="k">case</span> <span class="n">None</span>
+<a name="line-11"></a>    <span class="k">case</span> <span class="n">Some</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<a name="line-12"></a><span class="p">}</span>
+<a name="line-13"></a><span class="k">var</span> <span class="nl">possibleInteger</span><span class="p">:</span> <span class="n">OptionalValue</span><span class="o">&lt;</span><span class="n">Int</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">.</span><span class="n">None</span>
+<a name="line-14"></a><span class="n">possibleInteger</span> <span class="o">=</span> <span class="p">.</span><span class="n">Some</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div>
+<p>可以使用<code class="inline-code">where</code>来限制泛型类型，如遵守某种协议，或两个泛型是否是同一个类型等。在简单情况下，可以省略<code class="inline-code">where</code>。</p>
+<div class="highlight"><pre><code class="swift"><a name="line-1"></a><span class="k">func</span> <span class="n">anyCommonElements</span> <span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span> <span class="k">where</span> <span class="nl">T</span><span class="p">:</span> <span class="n">SequenceType</span><span class="p">,</span> <span class="nl">U</span><span class="p">:</span> <span class="n">SequenceType</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">Generator</span><span class="p">.</span><span class="nl">Element</span><span class="p">:</span> <span class="n">Equatable</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">Generator</span><span class="p">.</span><span class="n">Element</span> <span class="o">==</span> <span class="n">U</span><span class="p">.</span><span class="n">Generator</span><span class="p">.</span><span class="n">Element</span><span class="o">&gt;</span> <span class="p">(</span><span class="nl">lhs</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="nl">rhs</span><span class="p">:</span> <span class="n">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="p">{</span>
+<a name="line-2"></a>    <span class="k">for</span> <span class="n">lhsItem</span> <span class="k">in</span> <span class="n">lhs</span> <span class="p">{</span>
+<a name="line-3"></a>        <span class="k">for</span> <span class="n">rhsItem</span> <span class="k">in</span> <span class="n">rhs</span> <span class="p">{</span>
+<a name="line-4"></a>            <span class="k">if</span> <span class="n">lhsItem</span> <span class="o">==</span> <span class="n">rhsItem</span> <span class="p">{</span>
+<a name="line-5"></a>                <span class="k">return</span> <span class="nb">true</span>
+<a name="line-6"></a>            <span class="p">}</span>
+<a name="line-7"></a>        <span class="p">}</span>
+<a name="line-8"></a>    <span class="p">}</span>
+<a name="line-9"></a>    <span class="k">return</span> <span class="nb">false</span>
+<a name="line-10"></a><span class="p">}</span>
+<a name="line-11"></a><span class="n">anyCommonElements</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</code></pre></div>
+<p>以上内容是看了<a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/GuidedTour.html#//apple_ref/doc/uid/TP40014097-CH2-ID1">A Swift Tour</a>后做得笔记，只是一个简单的导引，可以一窥swift的全貌，并没有深入语言新特性，后面对于各个重要的知识点去看了<a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309">Language Guide</a>​后再做详细记录。</p>
+
+</article>
+
+
+  <div class="py2 post-footer">
+  <img src="/images/me.jpg" alt="Neal" class="avatar" />
+  <p>
+
+  </p>
+  <p>
+
+  </p>
+</div>
+
+
+
+
+
+		
+	
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Swift" data-title="Swift" data-url="http://nealsun.github.io/swift/ios/apple/cocoa/2015/07/31/SWIFT/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zhome"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+
+      	
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+	<a href="https://github.com/ee0703/pixyll-zh-cn">Pixyll中文版</a> 
+	汉化 by <a href="https://github.com/ee0703">EE</a><br>
+        Crafted with &lt;3 by <a href="http://johnotander.com">John Otander</a> (<a href="https://twitter.com/4lpine">@4lpine</a>).<br>
+        &lt;/&gt; available on <a href="https://github.com/johnotander/pixyll">Github</a>.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-48454026-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
