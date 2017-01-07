@@ -1,4 +1,4 @@
-/*! PHOTOSYNTHETIC 2017-01-06 */
+/*! PHOTOSYNTHETIC 2017-01-07 */
 
-$(function(){if(window.Swiper){new Swiper(".swiper-container",{direction:"horizontal",autoplay:5e3,speed:1e3,loop:!0,pagination:".swiper-pagination",nextButton:".swiper-button-next",prevButton:".swiper-button-prev"})}});
+$(function(){if(window.Swiper){new Swiper(".swiper-container",{direction:"horizontal",autoplay:5e3,speed:1e3,slidesPerView:"auto",pagination:".swiper-pagination",nextButton:".swiper-button-next",prevButton:".swiper-button-prev"})}var a=[0],b=function(){var b=$(".m_blockTitle").height();$(".m_blockTitle").each(function(c,d){if(c>0){if(a.length!==$(".m_blockTitle").length){var e=$(d).offset().top,f=b*c,g=e-f;a.push(g)}$(window).scrollTop()>=a[c]?$(d).css({position:"fixed",top:b+"px",left:"auto"}):$(d).css({position:"absolute",top:"0"})}})};b(),$(window).scroll(function(){b()})});
 //# sourceMappingURL=main.js.map

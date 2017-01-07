@@ -1,0 +1,273 @@
+@charset "utf-8";
+/**
+ * main.scss
+ * @author Cc
+ * @date 2016-12-26
+ *
+ */
+
+/* mixin */
+@import "_mixin";
+
+/* reset 重置样式 */
+@import "_reset";
+
+/* base 基础样式，一般改这个，看不同项目的需要 */
+@import "_base";
+
+html, body {
+	height: 100%;
+	box-sizing: border-box;
+}
+body {
+	font-size: 14px;
+	color: #fff;
+}
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+.w_icon {
+	display: inline-block;
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+}
+.w_icon_Logo {
+	width: 167px;
+	height: 94px;
+	background-image: url(../images/icon_logo.png);
+}
+.w_icon_Part1,
+.w_icon_Part2 {
+	width: 28px;
+	height: 22px;
+}
+.w_icon_Part1 {
+	background-image: url(../images/icon_part1.png);
+}
+.w_icon_Part2 {
+	background-image: url(../images/icon_part2.png);
+}
+.w_icon_More {
+	width: 152px;
+	height: 153px;
+	background-image: url(../images/icon_more.png);
+}
+.w_icon_ArrowLeft,
+.w_icon_ArrowRight {
+	width: 16px;
+	height: 28px;
+}
+.w_icon_ArrowLeft {
+	background-image: url(../images/icon_arrowLeft.png);
+}
+.w_icon_ArrowRight {
+	background-image: url(../images/icon_arrowRight.png);
+}
+
+
+.g_bodyWrap,
+.g_body {
+	background: #03c;
+}
+.g_body,
+.g_footer {
+	width: 1200px;
+	margin: 0 auto;
+}
+.g_body {
+	padding-bottom: 60px;
+}
+.g_footerWrap,
+.g_footer {
+	background: #000;
+}
+.g_footer {
+	line-height: 180px;
+	text-align: center;
+	font-size: 24px;
+	color: #fff;
+}
+
+
+.m_block {
+	position: relative;
+	padding: 0 0 10px 0;
+}
+.m_blockTitle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 200px;
+	text-align: center;
+}
+.m_blockTitle .text {
+	padding-top: 32px;
+	line-height: 32px;
+	margin-bottom: 18px;
+	font-size: 24px;
+}
+.m_blockTitle .w_icon_Logo {
+	display: block;
+	margin: (200px-94px)/2 0 0 (200px-167px)/2;
+}
+.m_blockContent {
+	position: relative;
+	z-index: 2;
+	margin-left: 200px;
+}
+
+
+.m_block_Head .m_blockTitle {
+	position: fixed;
+	z-index: 1;
+	left: auto;
+	background: #009;
+}
+.m_blockContent_Head {
+	background: #4c94ff;
+}
+.m_blockContent_Head .text {
+	width: 800px-60px*2;
+	padding: 60px 60px 80px;
+	background: #fff;
+	line-height: 58px;
+	font-size: 14px;
+	color: #333;
+	letter-spacing: 5px;
+}
+.m_blockContent_Head .title {
+	font-size: 20px;
+	letter-spacing: 7px;
+}
+
+.m_block_Intro .m_blockTitle {
+	background: #3cc;
+}
+.m_block_Intro .swiper {
+	@extend %clear;
+}
+.m_introList {
+	float: left;
+}
+.m_introList li {
+	height: 350px;
+}
+.m_introList_Avatar1 {
+	width: 400px;
+}
+.m_introList_Avatar1 li {
+	background: #000;
+}
+.m_introList_Avatar1 li.sec {
+	background: #fff;
+}
+
+.m_introList_Text {
+	background: #06f;
+	color: #fff;
+}
+.m_introList_Text li {
+	width: 350px;
+	padding: 0 24px 0 26px;
+	word-break: break-word;
+}
+.m_introList_Text .name {
+	padding-top: 12px;
+	line-height: 36px;
+	font-size: 20px;
+}
+.m_introList_Text p {
+	line-height: 27px;
+	font-size: 14px;
+}
+.m_introLogo {
+	float: left;
+	position: relative;
+	width: 400px;
+	height: 700px;
+	background: #009;
+}
+.m_introLogo .w_icon_Logo {
+	position: absolute;
+	top: 24px;
+	right: 24px;
+}
+.m_introSwiper .slide1 {
+	width: 800px;
+}
+.m_introSwiper .swiper-button-prev,
+.m_introSwiper .swiper-button-next {
+	width: 48px;
+	height: 48px;
+	background: url(../images/bg_arrow.png) no-repeat;
+	&:hover {
+		background-image: url(../images/bg_arrowHover.png);
+	}
+	& .w_icon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: (-28px/2) 0 0 (-16px/2);
+	}
+}
+
+.m_block_Cases .m_blockTitle {
+	background: #c3f;
+}
+
+.m_block_Cases .m_blockTitle .text {
+	padding-top: 62px;
+}
+.m_casesList {
+	@extend %clear;
+	background: #fff;
+}
+.m_casesList .item {
+	float: left;
+	width: 500px;
+}
+.m_caseCnt {
+	position: relative;
+	display: block;
+	width: 100%;
+	cursor: default;
+	font-size: 14px;
+	color: #333;
+}
+.m_caseCnt .banner {
+	display: block;
+}
+.m_caseCnt .content {
+	padding: 18px 0 16px 28px;
+}
+.m_caseCnt .title {
+	line-height: 36px;
+	font-size: 20px;
+	color: #03c;
+}
+.m_caseCnt .text {
+	line-height: 27px;
+}
+.m_caseCnt .award {
+	position: absolute;
+	right: 20px;
+	bottom: 15px;
+	@extend %clear;
+}
+.m_caseCnt .award li {
+	float: left;
+	margin-left: 15px;
+	width: 70px;
+}
+.m_caseCnt_OnlyIcon {
+	position: relative;
+	height: 432px;
+}
+.m_caseCnt_OnlyIcon .w_icon_More {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: (-153px/2) 0 0 (-152px/2);
+}
